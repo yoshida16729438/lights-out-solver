@@ -1,4 +1,4 @@
-#ライツアウトソルバー
+# ライツアウトソルバー
 
 ライツアウトパズル/ 8めくりパズルを解く SPA になる予定です。
 
@@ -18,7 +18,7 @@
   </dd>
 </dl>
 
-#lights out solver
+# lights out solver
 
 It will be a SPA for solving (diagonal) lights out puzzle.
 
