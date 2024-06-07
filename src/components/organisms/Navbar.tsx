@@ -2,13 +2,19 @@ import { useRef, useState } from "react";
 import NavbarLogo from "../atoms/navbar/NavbarLogo";
 import NavbarToggleBtn from "../atoms/navbar/NavbarToggleBtn";
 import NavbarItemContainer from "../molecules/NavbarItemContainer";
+import ConfigModal from "./modal/ConfigModal";
 
 const Navbar = () => {
   const [transitioning, setTransitioning] = useState(false);
   const [shown, setShown] = useState(false);
+  const [showConfig, setShowConfig] = useState(false);
   const nav = useRef<HTMLDivElement>(null);
 
   const onClickToggle = () => {
+    const CLASS_NAME_SHOW = "show";
+    const CLASS_NAME_COLLAPSE = "collapse";
+    const CLASS_NAME_COLLAPSING = "collapsing";
+
     if (transitioning) return;
     setTransitioning(true);
 
@@ -46,19 +52,24 @@ const Navbar = () => {
     nav.current!.style.height = finalHeight;
   };
 
-  const CLASS_NAME_SHOW = "show";
-  const CLASS_NAME_COLLAPSE = "collapse";
-  const CLASS_NAME_COLLAPSING = "collapsing";
+  const onClickConfig = () => setShowConfig(true);
+  const onClickConfigComplete = () => {
+    setShowConfig(false);
+  };
+  const onClickConfigCancel = () => setShowConfig(false);
 
   const onClick = () => {};
   return (
-    <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top" aria-label="navigation">
-      <div className="container-fluid">
-        <NavbarLogo />
-        <NavbarToggleBtn onClick={onClickToggle} />
-        <NavbarItemContainer onClickAbout={onClick} onClickConfig={onClick} ref={nav} />
-      </div>
-    </nav>
+    <>
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top" aria-label="navigation">
+        <div className="container-fluid">
+          <NavbarLogo />
+          <NavbarToggleBtn onClick={onClickToggle} />
+          <NavbarItemContainer onClickAbout={onClick} onClickConfig={onClickConfig} ref={nav} />
+        </div>
+      </nav>
+      {showConfig && <ConfigModal onClickComplete={onClickConfigComplete} onClickCancel={onClickConfigCancel} onClickReset={onClick} />}
+    </>
   );
 };
 
