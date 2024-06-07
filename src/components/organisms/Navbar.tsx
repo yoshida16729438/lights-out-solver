@@ -3,11 +3,13 @@ import NavbarLogo from "../atoms/navbar/NavbarLogo";
 import NavbarToggleBtn from "../atoms/navbar/NavbarToggleBtn";
 import NavbarItemContainer from "../molecules/NavbarItemContainer";
 import ConfigModal from "./modal/ConfigModal";
+import AboutModal from "./modal/AboutModal";
 
 const Navbar = () => {
   const [transitioning, setTransitioning] = useState(false);
   const [shown, setShown] = useState(false);
   const [showConfig, setShowConfig] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const nav = useRef<HTMLDivElement>(null);
 
   const onClickToggle = () => {
@@ -52,11 +54,13 @@ const Navbar = () => {
     nav.current!.style.height = finalHeight;
   };
 
-  const onClickConfig = () => setShowConfig(true);
-  const onClickConfigComplete = () => {
+  const onClickShowConfig = () => setShowConfig(true);
+  const onClickSaveConfig = () => {
     setShowConfig(false);
   };
-  const onClickConfigCancel = () => setShowConfig(false);
+  const onClickCancelConfig = () => setShowConfig(false);
+  const onClickShowAbout = () => setShowAbout(true);
+  const onClickCloseAbout = () => setShowAbout(false);
 
   const onClick = () => {};
   return (
@@ -65,10 +69,11 @@ const Navbar = () => {
         <div className="container-fluid">
           <NavbarLogo />
           <NavbarToggleBtn onClick={onClickToggle} />
-          <NavbarItemContainer onClickAbout={onClick} onClickConfig={onClickConfig} ref={nav} />
+          <NavbarItemContainer onClickAbout={onClickShowAbout} onClickConfig={onClickShowConfig} ref={nav} />
         </div>
       </nav>
-      {showConfig && <ConfigModal onClickComplete={onClickConfigComplete} onClickCancel={onClickConfigCancel} onClickReset={onClick} />}
+      {showConfig && <ConfigModal onClickComplete={onClickSaveConfig} onClickCancel={onClickCancelConfig} onClickReset={onClick} />}
+      {showAbout && <AboutModal onClickClose={onClickCloseAbout} />}
     </>
   );
 };
