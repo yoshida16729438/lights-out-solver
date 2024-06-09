@@ -2,8 +2,7 @@ import { ChangeEvent, FC, useState } from "react";
 
 export type NumberInputValue = number | "";
 
-const NumberInput: FC<{ caption: string; value: NumberInputValue; setValue: (value: NumberInputValue) => void; min?: number; max?: number; isValid: boolean; setIsValid: (isValid: boolean) => void }> = ({ caption, value, setValue, min, max, isValid, setIsValid }) => {
-  const [errMsg, setErrMsg] = useState("");
+const NumberInput: FC<{ caption: string; value: NumberInputValue; setValue: (value: NumberInputValue) => void; min?: number; max?: number; isValid: boolean; setIsValid: (isValid: boolean) => void; setErrMsg?: (msg: string) => void }> = ({ caption, value, setValue, min, max, isValid, setIsValid, setErrMsg = (_) => {} }) => {
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setValue(Number.isNaN(e.target.valueAsNumber) ? "" : e.target.valueAsNumber);
     if (Number.isNaN(e.target.valueAsNumber)) {
@@ -42,7 +41,6 @@ const NumberInput: FC<{ caption: string; value: NumberInputValue; setValue: (val
         <span>{caption}</span>
         <input type="number" className={`form-control ${isValid ? "is-valid" : "is-invalid"}`} max={max} min={min} value={value} onChange={onChange} required />
       </label>
-      {!isValid && <span className="invalid-feedback d-block">{errMsg}</span>}
     </>
   );
 };
