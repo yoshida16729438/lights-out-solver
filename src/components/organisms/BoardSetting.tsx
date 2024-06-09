@@ -46,7 +46,6 @@ const BoardSetting: FC<{ props: BoardProperties; setProps: (value: BoardProperti
 
   return (
     <>
-      <h1>設定</h1>
       <div className="container">
         <div className="row">
           <div className="col-auto">

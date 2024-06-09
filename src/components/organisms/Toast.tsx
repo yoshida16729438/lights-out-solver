@@ -9,6 +9,7 @@ const Toast: FC<{ children: ReactNode; forceClose: () => void }> = ({ children, 
         forceClose();
       }, 5000)
     );
+    //eslint-disable-next-line
   }, []);
 
   const onClickClose = () => {
