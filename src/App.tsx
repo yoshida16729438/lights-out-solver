@@ -21,6 +21,8 @@ function App() {
       <main className="container-fluid mb-3">
         <section className="row justify-content-center m-1">
           <div className="col-auto">
+            <h1>設定</h1>
+            <h2>盤面設定</h2>
             <BoardSetting props={boardProps} setProps={setBoardProps} />
           </div>
         </section>
