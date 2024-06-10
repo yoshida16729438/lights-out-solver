@@ -1,0 +1,11 @@
+.board {
+  max-width: 90vw;
+  max-height: 80vh;
+  caret-color: transparent;
+}
+
+.board-preview {
+  max-width: 90%;
+  max-height: 50vh;
+  caret-color: transparent;
+}
