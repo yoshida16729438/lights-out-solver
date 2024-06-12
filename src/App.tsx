@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Layout from "./components/templates/Layout";
 import { defaultBoardProps } from "./types/BoardProperties";
@@ -6,6 +6,7 @@ import BoardSetting from "./components/organisms/BoardSetting";
 import Board from "./components/organisms/board/Board";
 import { TurnMode } from "./types/TurnMode";
 import TurnModeSelect from "./components/molecules/TurnModeSelect";
+import { loadEnvironmentSettings, reflectEnvironmentSettings } from "./utils/EnvironmentSettingsUtil";
 
 function App() {
   const [boardProps, setBoardProps] = useState(defaultBoardProps);
@@ -22,6 +23,11 @@ function App() {
     [0, 1, 0, 1, 0],
   ];
   const [array, setArray] = useState(initialArray);
+
+  useEffect(() => {
+    const environmentSettings = loadEnvironmentSettings();
+    reflectEnvironmentSettings(environmentSettings, environmentSettings);
+  }, []);
 
   return (
     <Layout>
