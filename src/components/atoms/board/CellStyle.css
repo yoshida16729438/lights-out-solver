@@ -1,7 +1,9 @@
 .cell,
 .cell-preview,
 .row-header-cell,
-.column-header-cell {
+.row-header-cell-preview,
+.column-header-cell,
+.column-header-cell-preview {
   --cell-size-default: 50px;
 }
 
@@ -21,7 +23,9 @@
 }
 
 .row-header-cell,
+.row-header-cell-preview,
 .column-header-cell,
+.column-header-cell-preview,
 .topleft-cell {
   --header-cell-size: 30px;
   background-color: rgb(228, 228, 228);
@@ -31,6 +35,7 @@
 }
 
 .row-header-cell,
+.row-header-cell-preview,
 .topleft-cell {
   width: var(--header-cell-size);
   position: -webkit-sticky;
@@ -39,11 +44,13 @@
 }
 
 .column-header-cell,
+.column-header-cell-preview,
 .topleft-cell {
   height: var(--header-cell-size);
 }
 
-.row-header-cell {
+.row-header-cell,
+.row-header-cell-preview {
   height: var(--cell-size, var(--cell-size-default));
   line-height: var(--cell-size, var(--cell-size-default));
   z-index: 0;
@@ -52,7 +59,8 @@
   border-right: 1px solid black;
 }
 
-.column-header-cell {
+.column-header-cell,
+.column-header-cell-preview {
   width: var(--cell-size, var(--cell-size-default));
   border-left: 1px solid black;
   border-right: 1px solid black;

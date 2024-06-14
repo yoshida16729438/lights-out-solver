@@ -33,7 +33,7 @@ const Board: FC<{ values: number[][]; setValues: (values: number[][]) => void; m
   return (
     <div className="d-flex flex-row">
       <div className="d-flex flex-column overflow-auto m-1 board text-center">
-        <ColumnHeader columnCount={values[0].length} />
+        <ColumnHeader columnCount={values[0].length} isPreview={isPreview} />
         {values.map((rowValues, rowIndex) => {
           return <Row rowNum={rowIndex + 1} values={rowValues} showValue={showValue} showColor={showColor} isPreview={isPreview} enableClick={enableClick} onClickGenerator={onClickGeneratorGenerator(rowIndex)} key={rowIndex} />;
         })}

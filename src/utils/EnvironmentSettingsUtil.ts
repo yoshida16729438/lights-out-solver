@@ -5,7 +5,7 @@ export type EnvironmentValues = {
   realTime: boolean;
 };
 
-const defaultEnvironmentValues: EnvironmentValues = {
+export const defaultEnvironmentValues: EnvironmentValues = {
   cellSize: 50,
   colors: ["#ffffff", "#000000", "#ff4b00", "#fff100", "#03af7a", "#005aff", "#4dc4ff"],
   showValue: false,
@@ -40,7 +40,7 @@ export const saveEnvironmentSettings = (settings: EnvironmentValues): void => {
 };
 
 export const reflectEnvironmentSettings = (currentSettings: EnvironmentValues, tempSettings: EnvironmentValues): void => {
-  let cssString = `.cell{--cell-size:${currentSettings.cellSize}px;} .cell-preview{--cell-size:${tempSettings.cellSize}px;}`;
+  let cssString = `.cell,.row-header-cell,.column-header-cell{--cell-size:${currentSettings.cellSize}px;} .cell-preview,.row-header-cell-preview,.column-header-cell-preview{--cell-size:${tempSettings.cellSize}px;}`;
   const createFormat = (classNamePrefix: string) => (value: string, index: number) => {
     const r = parseInt(value.substring(1, 3), 16);
     const g = parseInt(value.substring(3, 5), 16);

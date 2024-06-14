@@ -55,14 +55,10 @@ const Navbar = () => {
   };
 
   const onClickShowConfig = () => setShowConfig(true);
-  const onClickSaveConfig = () => {
-    setShowConfig(false);
-  };
-  const onClickCancelConfig = () => setShowConfig(false);
+  const onCloseConfigModal = () => setShowConfig(false);
   const onClickShowAbout = () => setShowAbout(true);
-  const onClickCloseAbout = () => setShowAbout(false);
+  const onCloseAboutModal = () => setShowAbout(false);
 
-  const onClick = () => {};
   return (
     <>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top" aria-label="navigation">
@@ -72,8 +68,8 @@ const Navbar = () => {
           <NavbarItemContainer onClickAbout={onClickShowAbout} onClickConfig={onClickShowConfig} ref={nav} />
         </div>
       </nav>
-      {showConfig && <ConfigModal onClickComplete={onClickSaveConfig} onClickCancel={onClickCancelConfig} onClickReset={onClick} />}
-      {showAbout && <AboutModal onClickClose={onClickCloseAbout} />}
+      {showConfig && <ConfigModal onClose={onCloseConfigModal} />}
+      {showAbout && <AboutModal onClickClose={onCloseAboutModal} />}
     </>
   );
 };
