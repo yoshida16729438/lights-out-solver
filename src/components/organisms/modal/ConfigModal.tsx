@@ -10,6 +10,8 @@ import ColorPicker from "../../atoms/input/ColorPicker";
 import Board from "../board/Board";
 import { TurnMode } from "../../../types/TurnMode";
 import CheckBox from "../../atoms/input/CheckBox";
+import { useShowValueContext } from "../../../providers/ShowValueProvider";
+import { useRealTimeContext } from "../../../providers/RealTimeProvider";
 
 const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ onClose }) => {
   //全体
@@ -31,7 +33,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
   //リアルタイム
   const [realTime, setRealTime] = useState(true);
 
-  //盤面
+  //盤面(全ての隣り合わせの組み合わせが存在する並び)
   const previewValue = [
     [0, 1, 2, 3],
     [3, 4, 5, 6],
@@ -39,6 +41,9 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
     [5, 3, 4, 2],
   ];
   const [boardValue, setBoardValue] = useState(previewValue);
+
+  const { setShowValue: setShowValueContext } = useShowValueContext();
+  const { setRealTime: setRealTimeContext } = useRealTimeContext();
 
   //全反映
   const setAll = (settings: EnvironmentValues) => {
@@ -92,8 +97,11 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
       setIsToastLiving(true);
       return;
     }
+    setIsToastLiving(false);
     const newSettings = { cellSize: lastValidCellSize, colors, showValue, realTime };
     saveEnvironmentSettings(newSettings);
+    setShowValueContext(showValue);
+    setRealTimeContext(realTime);
     reflectEnvironmentSettings(newSettings, newSettings);
     onClose(e);
   };
