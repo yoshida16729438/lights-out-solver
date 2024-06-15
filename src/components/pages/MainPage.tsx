@@ -117,7 +117,7 @@ const MainPage: FC = () => {
               </div>
             </div>
             <div className="col-auto">
-              <Board values={freeBoard} setValues={setFreeBoard} showValue={showValue} showColor isPreview={false} enableClick turnMode={freeTurnMode} />
+              <Board values={freeBoard} setValues={setFreeBoard} showValue={showValue} turnMode={freeTurnMode} />
             </div>
           </div>
         </div>

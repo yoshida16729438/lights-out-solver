@@ -108,7 +108,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
 
   const onClickReset = () => {
     setAll(defaultEnvironmentValues);
-    reflectEnvironmentSettings(defaultEnvironmentValues, defaultEnvironmentValues);
+    reflectEnvironmentSettings(currentSettings, defaultEnvironmentValues);
   };
 
   return (
