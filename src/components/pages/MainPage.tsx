@@ -33,14 +33,14 @@ const MainPage: FC = () => {
   ];
 
   const [initialBoard, setInitialBoard] = useState(new BoardData(finalBoardInitialState.length, finalBoardInitialState[0].length, defaultBoardProps.colors));
-  const [finallBoard, setfinalBoard] = useState(BoardData.createFromArray(finalBoardInitialState, defaultBoardProps.colors));
+  const [finalBoard, setfinalBoard] = useState(BoardData.createFromArray(finalBoardInitialState, defaultBoardProps.colors));
   const [freeBoard, setFreeBoard] = useState(new BoardData(defaultBoardProps.height, defaultBoardProps.width, defaultBoardProps.colors));
 
   const onSetBoardProps = (newProps: BoardProperties) => {
     if (boardProps.height === newProps.height && boardProps.width === newProps.width) {
       if (boardProps.colors !== newProps.colors) {
         setInitialBoard(initialBoard.changeModulo(newProps.colors));
-        setfinalBoard(finallBoard.changeModulo(newProps.colors));
+        setfinalBoard(finalBoard.changeModulo(newProps.colors));
         setBoardProps(newProps);
       }
     } else {
@@ -92,7 +92,7 @@ const MainPage: FC = () => {
         </section>
         <section className="col-auto">
           <h1>最終状態</h1>
-          <Board values={finallBoard} setValues={setfinalBoard} showValue={showValue} showColor />
+          <Board values={finalBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
       </section>
 
