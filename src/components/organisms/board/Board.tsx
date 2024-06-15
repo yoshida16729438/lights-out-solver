@@ -5,7 +5,7 @@ import "./Board.css";
 import { TurnMode } from "../../../types/TurnMode";
 import { BoardData } from "../../../types/BoardData";
 
-const Board: FC<{ values: BoardData; setValues: (values: BoardData) => void; showValue: boolean; showColor: boolean; isPreview: boolean; enableClick: boolean; turnMode: TurnMode }> = ({ values, setValues, showValue, showColor, isPreview, enableClick, turnMode }) => {
+const Board: FC<{ values: BoardData; setValues?: (values: BoardData) => void; showValue: boolean; showColor?: boolean; isPreview?: boolean; enableClick?: boolean; turnMode?: TurnMode }> = ({ values, setValues = (_) => {}, showValue, showColor = true, isPreview = false, enableClick = true, turnMode = TurnMode.single }) => {
   const onClickGeneratorGenerator = (rowIndex: number) => {
     return (columnIndex: number) => () => {
       const newData = values.createCopy();

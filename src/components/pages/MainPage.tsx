@@ -88,11 +88,11 @@ const MainPage: FC = () => {
       <section className="row justify-content-center m-1 mb-5">
         <section className="col-auto">
           <h1>初期状態</h1>
-          <Board values={initialBoard} setValues={setInitialBoard} showValue={showValue} showColor isPreview={false} enableClick turnMode={TurnMode.single} />
+          <Board values={initialBoard} setValues={setInitialBoard} showValue={showValue} showColor />
         </section>
         <section className="col-auto">
           <h1>最終状態</h1>
-          <Board values={finallBoard} setValues={setfinalBoard} showValue={showValue} showColor isPreview={false} enableClick turnMode={TurnMode.single} />
+          <Board values={finallBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
       </section>
 

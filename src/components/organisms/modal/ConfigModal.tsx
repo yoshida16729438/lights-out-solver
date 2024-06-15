@@ -8,7 +8,6 @@ import NumberInput, { NumberInputValue } from "../../atoms/input/NumberInput";
 import Toast from "../Toast";
 import ColorPicker from "../../atoms/input/ColorPicker";
 import Board from "../board/Board";
-import { TurnMode } from "../../../types/TurnMode";
 import CheckBox from "../../atoms/input/CheckBox";
 import { useShowValueContext } from "../../../providers/ShowValueProvider";
 import { useRealTimeContext } from "../../../providers/RealTimeProvider";
@@ -41,7 +40,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
     [1, 6, 0, 2],
     [5, 3, 4, 2],
   ];
-  const [boardValue, setBoardValue] = useState(BoardData.createFromArray(previewValue, 7));
+  const boardValue=BoardData.createFromArray(previewValue, 7);
 
   const { setShowValue: setShowValueContext } = useShowValueContext();
   const { setRealTime: setRealTimeContext } = useRealTimeContext();
@@ -138,7 +137,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
             </div>
             <div className="row mb-3">
               <span>プレビュー</span>
-              <Board values={boardValue} setValues={setBoardValue} showValue={showValue} isPreview showColor enableClick={false} turnMode={TurnMode.single} />
+              <Board values={boardValue} showValue={showValue} isPreview showColor />
             </div>
             <h1 className="fs-6 row mb-3">動作設定</h1>
             <div className="row">
