@@ -7,9 +7,13 @@ import TurnModeSelect from "../molecules/TurnModeSelect";
 import { loadEnvironmentSettings, reflectEnvironmentSettings } from "../../utils/EnvironmentSettingsUtil";
 import { useShowValueContext } from "../../providers/ShowValueProvider";
 import { BoardData } from "../../types/BoardData";
+import { solve } from "../../logics/Solver";
+import { useRealTimeContext } from "../../providers/RealTimeProvider";
 
 const MainPage: FC = () => {
   const { showValue } = useShowValueContext();
+  const { realTime } = useRealTimeContext();
+
   const [boardProps, setBoardProps] = useState(defaultBoardProps);
   const [turnMode, setTurnMode] = useState(TurnMode.lightsOut);
   const turnModeOptions = [
@@ -23,6 +27,7 @@ const MainPage: FC = () => {
     { text: "ライツアウト", value: TurnMode.lightsOut },
     { text: "8めくり", value: TurnMode.diagonal },
   ];
+  const [answers, setAnswers] = useState<BoardData[]>([]);
 
   const finalBoardInitialState = [
     [0, 1, 0, 1, 0],
@@ -36,16 +41,28 @@ const MainPage: FC = () => {
   const [finalBoard, setfinalBoard] = useState(BoardData.createFromArray(finalBoardInitialState, defaultBoardProps.colors));
   const [freeBoard, setFreeBoard] = useState(new BoardData(defaultBoardProps.height, defaultBoardProps.width, defaultBoardProps.colors));
 
+  const doSolve = (initial: BoardData, final: BoardData, turnMode: TurnMode) => {
+    if (realTime) setAnswers(solve(initial, final, turnMode));
+  };
+
+  const onSetTurnMode = (turnMode: TurnMode) => {
+    setTurnMode(turnMode);
+  };
+
   const onSetBoardProps = (newProps: BoardProperties) => {
     if (boardProps.height === newProps.height && boardProps.width === newProps.width) {
       if (boardProps.colors !== newProps.colors) {
-        setInitialBoard(initialBoard.changeModulo(newProps.colors));
-        setfinalBoard(finalBoard.changeModulo(newProps.colors));
+        const newInitialBoard = initialBoard.changeModulo(newProps.colors);
+        const newFinalBoard = initialBoard.changeModulo(newProps.colors);
+        setInitialBoard(newInitialBoard);
+        setfinalBoard(newFinalBoard);
         setBoardProps(newProps);
       }
     } else {
-      setInitialBoard(new BoardData(newProps.height, newProps.width, newProps.colors));
-      setfinalBoard(new BoardData(newProps.height, newProps.width, newProps.colors));
+      const newInitialBoard = new BoardData(newProps.height, newProps.width, newProps.colors);
+      const newFinalBoard = new BoardData(newProps.height, newProps.width, newProps.colors);
+      setInitialBoard(newInitialBoard);
+      setfinalBoard(newFinalBoard);
       setBoardProps(newProps);
     }
   };
@@ -67,6 +84,11 @@ const MainPage: FC = () => {
     reflectEnvironmentSettings(environmentSettings, environmentSettings);
   }, []);
 
+  useEffect(() => {
+    doSolve(initialBoard, finalBoard, turnMode);
+    //eslint-disable-next-line
+  }, [initialBoard, finalBoard, turnMode]);
+
   return (
     <main className="container-fluid mb-3">
       <section className="row justify-content-center m-1">
@@ -79,7 +101,7 @@ const MainPage: FC = () => {
             </div>
             <div className="col-auto">
               <h2>動作設定</h2>
-              <TurnModeSelect name="mode" options={turnModeOptions} value={turnMode} setValue={setTurnMode} />
+              <TurnModeSelect name="mode" options={turnModeOptions} value={turnMode} setValue={onSetTurnMode} />
             </div>
           </div>
         </div>
@@ -94,6 +116,12 @@ const MainPage: FC = () => {
           <h1>最終状態</h1>
           <Board values={finalBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
+        {answers.length > 0 && (
+          <section className="col-auto">
+            <h1>解答</h1>
+            <Board values={answers[0]} showValue showColor={false} enableClick={false} />
+          </section>
+        )}
       </section>
 
       <section className="row justify-content-center m-1">

@@ -45,7 +45,7 @@ export const reflectEnvironmentSettings = (currentSettings: EnvironmentValues, t
     const r = parseInt(value.substring(1, 3), 16);
     const g = parseInt(value.substring(3, 5), 16);
     const b = parseInt(value.substring(5, 7), 16);
-    cssString += ` .${classNamePrefix}${index + 1}{--cell-color:${value}; --cell-text-color:${255 * 3 - (r + g + b) * 2 > 0 ? "#ffffff" : "#000000"};}`;
+    cssString += ` .${classNamePrefix}${index}{--cell-color:${value}; --cell-text-color:${255 * 3 - (r + g + b) * 2 > 0 ? "#ffffff" : "#000000"};}`;
   };
 
   currentSettings.colors.forEach(createFormat("cell-color-"));

@@ -53,4 +53,8 @@ export class BoardData {
   public map<T>(callbackFn: (value: number[], index: number) => T): T[] {
     return this.innerValues.map(callbackFn);
   }
+
+  public getModulo() {
+    return this.modulo;
+  }
 }
