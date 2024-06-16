@@ -16,6 +16,18 @@
       <li>Bootstrap</li>
     </ul>
   </dd>
+  <dt>解法ロジック参照先</dt>
+  <dd>
+    <ul>
+      <li>[驚異のライツアウト解法ロジック](https://computerpuzzle.net/puzzle/lights_out/index.html)</li>
+    </ul>
+  </dd>
+  <dt>見分けやすい色の組み合わせ参照先</dt>
+  <dd>
+    <ul>
+      <li>[カラーユニバーサルデザイン推奨配色セット](https://jfly.uni-koeln.de/colorset/)</li>
+    </ul>
+  </dd>
 </dl>
 
 # lights out solver
@@ -34,6 +46,18 @@ It will be a SPA for solving (diagonal) lights out puzzle.
     <ul>
       <li>React</li>
       <li>Bootstrap</li>
+    </ul>
+  </dd>
+  <dt>solving logic reference</dt>
+  <dd>
+    <ul>
+      <li>[驚異のライツアウト解法ロジック(Japanese website)](https://computerpuzzle.net/puzzle/lights_out/index.html)</li>
+    </ul>
+  </dd>
+  <dt>combination of colors easily distinguishable</dt>
+  <dd>
+    <ul>
+      <li>[カラーユニバーサルデザイン推奨配色セット(Japanese website)](https://jfly.uni-koeln.de/colorset/)</li>
     </ul>
   </dd>
 </dl>
