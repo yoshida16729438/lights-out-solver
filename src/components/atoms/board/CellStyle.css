@@ -18,7 +18,7 @@
   margin: 1px;
 }
 
-.cell-preview {
+.disable-click {
   pointer-events: none;
 }
 
