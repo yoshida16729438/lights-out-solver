@@ -141,4 +141,8 @@ class Equation {
       this.rightSide[i] = (this.rightSide[i] * multiplier) % this.modulo;
     }
   }
+
+  public rightSideTotal() {
+    return this.rightSide.reduce((prev, current) => prev + current, 0) % this.modulo;
+  }
 }

@@ -9,6 +9,7 @@ import { useShowValueContext } from "../../providers/ShowValueProvider";
 import { BoardData } from "../../types/BoardData";
 import { solve } from "../../logics/Solver";
 import { useRealTimeContext } from "../../providers/RealTimeProvider";
+import NumberInput, { NumberInputValue } from "../atoms/input/NumberInput";
 
 const MainPage: FC = () => {
   const { showValue } = useShowValueContext();
@@ -40,6 +41,8 @@ const MainPage: FC = () => {
   const [initialBoard, setInitialBoard] = useState(new BoardData(finalBoardInitialState.length, finalBoardInitialState[0].length, defaultBoardProps.colors));
   const [finalBoard, setfinalBoard] = useState(BoardData.createFromArray(finalBoardInitialState, defaultBoardProps.colors));
   const [freeBoard, setFreeBoard] = useState(new BoardData(defaultBoardProps.height, defaultBoardProps.width, defaultBoardProps.colors));
+  const [ansIndex,setAnsIndex]=useState<NumberInputValue>(0);
+  const [isValid,setIsValid]=useState(true);
 
   const doSolve = (initial: BoardData, final: BoardData, turnMode: TurnMode) => {
     if (realTime) setAnswers(solve(initial, final, turnMode));
@@ -116,12 +119,15 @@ const MainPage: FC = () => {
           <h1>最終状態</h1>
           <Board values={finalBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
-        {answers.length > 0 && (
+        {typeof ansIndex==="number" &&answers.length>ansIndex && (
           <section className="col-auto">
             <h1>解答</h1>
-            <Board values={answers[0]} showValue showColor={false} enableClick={false} />
+            <Board values={answers[ansIndex]} showValue showColor={false} enableClick={false} />
           </section>
         )}
+        <section className="col-auto">
+          <NumberInput caption="解答番号" value={ansIndex} setValue={setAnsIndex} isValid={isValid} setIsValid={setIsValid} />
+        </section>
       </section>
 
       <section className="row justify-content-center m-1">
