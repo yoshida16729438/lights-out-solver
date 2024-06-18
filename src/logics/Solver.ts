@@ -3,7 +3,7 @@ import { TurnMode } from "../types/TurnMode";
 import { Matrix } from "./Matrix";
 
 export const solve = (initial: BoardData, final: BoardData, turnMode: TurnMode) => {
-  const answers = [] as BoardData[];
+  const answers = [] as BoardPushCount[];
   const modulo = initial.getModulo();
   const matrix = new Matrix(initial, final, turnMode);
 
@@ -35,10 +35,19 @@ export const solve = (initial: BoardData, final: BoardData, turnMode: TurnMode) 
         }
         ans.push(row);
       }
-      answers.push(BoardData.createFromArray(ans, matrix.modulo));
+      const pushCount = ans.map((r) => r.reduce((prev, current) => prev + current, 0)).reduce((prev, current) => prev + current, 0);
+      answers.push({ board: BoardData.createFromArray(ans, matrix.modulo), pushCount });
     } while (combinations.hasNext());
   }
-  return answers;
+
+  //クリック回数でソートして返す
+  return answers.sort((a, b) => a.pushCount - b.pushCount).map((v) => v.board);
+};
+
+//解答をクリック回数でソートするための型
+type BoardPushCount = {
+  board: BoardData;
+  pushCount: number;
 };
 
 //両辺が0になっているセルに適用する値の組み合わせを管理するクラス
