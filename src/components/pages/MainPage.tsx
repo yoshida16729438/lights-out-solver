@@ -9,7 +9,7 @@ import { useShowValueContext } from "../../providers/ShowValueProvider";
 import { BoardData } from "../../types/BoardData";
 import { solve } from "../../logics/Solver";
 import { useRealTimeContext } from "../../providers/RealTimeProvider";
-import NumberInput, { NumberInputValue } from "../atoms/input/NumberInput";
+import AnswerBoard from "../organisms/board/AnswerBoard";
 
 const MainPage: FC = () => {
   const { showValue } = useShowValueContext();
@@ -41,11 +41,9 @@ const MainPage: FC = () => {
   const [initialBoard, setInitialBoard] = useState(new BoardData(finalBoardInitialState.length, finalBoardInitialState[0].length, defaultBoardProps.colors));
   const [finalBoard, setfinalBoard] = useState(BoardData.createFromArray(finalBoardInitialState, defaultBoardProps.colors));
   const [freeBoard, setFreeBoard] = useState(new BoardData(defaultBoardProps.height, defaultBoardProps.width, defaultBoardProps.colors));
-  const [ansIndex,setAnsIndex]=useState<NumberInputValue>(0);
-  const [isValid,setIsValid]=useState(true);
 
-  const doSolve = (initial: BoardData, final: BoardData, turnMode: TurnMode) => {
-    if (realTime) setAnswers(solve(initial, final, turnMode));
+  const onClickSolve = () => {
+    setAnswers(solve(initialBoard, finalBoard, turnMode));
   };
 
   const onSetTurnMode = (turnMode: TurnMode) => {
@@ -88,9 +86,9 @@ const MainPage: FC = () => {
   }, []);
 
   useEffect(() => {
-    doSolve(initialBoard, finalBoard, turnMode);
+    if (realTime) onClickSolve();
     //eslint-disable-next-line
-  }, [initialBoard, finalBoard, turnMode]);
+  }, [initialBoard, finalBoard, turnMode, realTime]);
 
   return (
     <main className="container-fluid mb-3">
@@ -119,14 +117,8 @@ const MainPage: FC = () => {
           <h1>最終状態</h1>
           <Board values={finalBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
-        {typeof ansIndex==="number" &&answers.length>ansIndex && (
-          <section className="col-auto">
-            <h1>解答</h1>
-            <Board values={answers[ansIndex]} showValue showColor={false} enableClick={false} />
-          </section>
-        )}
         <section className="col-auto">
-          <NumberInput caption="解答番号" value={ansIndex} setValue={setAnsIndex} isValid={isValid} setIsValid={setIsValid} />
+          <AnswerBoard answers={answers} onClickSolve={onClickSolve} width={boardProps.width} height={boardProps.height} />
         </section>
       </section>
 
