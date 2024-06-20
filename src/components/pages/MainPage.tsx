@@ -29,6 +29,7 @@ const MainPage: FC = () => {
     { text: "8めくり", value: TurnMode.diagonal },
   ];
   const [answers, setAnswers] = useState<BoardData[]>([]);
+  const [cannotDispMsg, setCannotDispMsg] = useState("");
 
   const finalBoardInitialState = [
     [0, 1, 0, 1, 0],
@@ -43,7 +44,9 @@ const MainPage: FC = () => {
   const [freeBoard, setFreeBoard] = useState(new BoardData(defaultBoardProps.height, defaultBoardProps.width, defaultBoardProps.colors));
 
   const onClickSolve = () => {
-    setAnswers(solve(initialBoard, finalBoard, turnMode));
+    const ans = solve(initialBoard, finalBoard, turnMode);
+    setAnswers(ans);
+    if (ans.length === 0) setCannotDispMsg("解答がありません");
   };
 
   const onSetTurnMode = (turnMode: TurnMode) => {
@@ -87,6 +90,10 @@ const MainPage: FC = () => {
 
   useEffect(() => {
     if (realTime) onClickSolve();
+    else {
+      setAnswers([]);
+      setCannotDispMsg("「解く」をクリックしてください");
+    }
     //eslint-disable-next-line
   }, [initialBoard, finalBoard, turnMode, realTime]);
 
@@ -118,7 +125,7 @@ const MainPage: FC = () => {
           <Board values={finalBoard} setValues={setfinalBoard} showValue={showValue} showColor />
         </section>
         <section className="col-auto">
-          <AnswerBoard answers={answers} onClickSolve={onClickSolve} width={boardProps.width} height={boardProps.height} />
+          <AnswerBoard answers={answers} onClickSolve={onClickSolve} realTime={realTime} width={boardProps.width} height={boardProps.height} cannotDispMsg={cannotDispMsg} />
         </section>
       </section>
 
