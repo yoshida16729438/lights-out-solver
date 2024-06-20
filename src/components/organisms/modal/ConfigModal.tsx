@@ -40,7 +40,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
     [1, 6, 0, 2],
     [5, 3, 4, 2],
   ];
-  const boardValue=BoardData.createFromArray(previewValue, 7);
+  const boardValue = BoardData.createFromArray(previewValue, 7);
 
   const { setShowValue: setShowValueContext } = useShowValueContext();
   const { setRealTime: setRealTimeContext } = useRealTimeContext();

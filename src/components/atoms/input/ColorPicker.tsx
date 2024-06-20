@@ -4,7 +4,7 @@ const ColorPicker: FC<{ caption: string; value: string; setValue: (value: string
   return (
     <label>
       <span>{caption}</span>
-      <input type="color" className="form-control form-control-color" value={value} onChange={e=>setValue(e.target.value)} />
+      <input type="color" className="form-control form-control-color" value={value} onChange={(e) => setValue(e.target.value)} />
     </label>
   );
 };
