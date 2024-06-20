@@ -10,7 +10,7 @@ const NavbarItemContainer = forwardRef<HTMLDivElement, { onClickAbout: MouseEven
           <NavbarButtonItem onClick={onClickAbout}>このサイトについて</NavbarButtonItem>
         </NavbarItemWrapper>
         <NavbarItemWrapper>
-          <NavbarButtonItem onClick={onClickConfig}>設定</NavbarButtonItem>
+          <NavbarButtonItem onClick={onClickConfig}>詳細設定</NavbarButtonItem>
         </NavbarItemWrapper>
       </ul>
     </div>

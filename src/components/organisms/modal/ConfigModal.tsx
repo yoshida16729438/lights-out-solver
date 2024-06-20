@@ -114,7 +114,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
   return (
     <ModalContainer>
       <>
-        <ModalHeader>設定</ModalHeader>
+        <ModalHeader>詳細設定</ModalHeader>
         <ModalBody>
           <div className="container">
             <h1 className="fs-6 row mb-3">表示設定</h1>
@@ -142,6 +142,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
             <h1 className="fs-6 row mb-3">動作設定</h1>
             <div className="row">
               <CheckBox caption="リアルタイムモード" value={realTime} setValue={setRealTimeWrapper} />
+              <p>※offは低スペック環境向け</p>
             </div>
           </div>
         </ModalBody>
