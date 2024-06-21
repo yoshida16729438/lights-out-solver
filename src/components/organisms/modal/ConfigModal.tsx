@@ -60,6 +60,7 @@ const ConfigModal: FC<{ onClose: MouseEventHandler<HTMLButtonElement> }> = ({ on
     setCurrentSettings(loadedSettings);
     reflectEnvironmentSettings(loadedSettings, loadedSettings);
     setAll(loadedSettings);
+    //eslint-disable-next-line
   }, []);
 
   const setCellSizeWrapper = (value: NumberInputValue) => {

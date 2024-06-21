@@ -86,6 +86,7 @@ const MainPage: FC = () => {
   useEffect(() => {
     const environmentSettings = loadEnvironmentSettings();
     reflectEnvironmentSettings(environmentSettings, environmentSettings);
+    //eslint-disable-next-line
   }, []);
 
   useEffect(() => {

@@ -35,6 +35,7 @@ const NumberInput: FC<{ caption: string; value: NumberInputValue; setValue: (val
 
   useEffect(() => {
     setIsValid(validate(typeof value === "number" ? value : 0));
+    //eslint-disable-next-line
   }, [max, min, value]);
 
   return (

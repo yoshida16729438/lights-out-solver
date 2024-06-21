@@ -22,6 +22,7 @@ const AnswerBoard: FC<{ answers: BoardData[]; width: number; height: number; rea
 
   useEffect(() => {
     setAnswerNo(1);
+    //eslint-disable-next-line
   }, [answers]);
 
   const dummyOnClickGenerator = (_: number) => () => {};
