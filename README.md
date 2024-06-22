@@ -19,13 +19,13 @@
   <dt>解法ロジック参照先</dt>
   <dd>
     <ul>
-      <li>[驚異のライツアウト解法ロジック](https://computerpuzzle.net/puzzle/lights_out/index.html)</li>
+      <li><a href="https://computerpuzzle.net/puzzle/lights_out/index.html" rel="noopener noreferrer" target="_blank">驚異のライツアウト解法ロジック</a></li>
     </ul>
   </dd>
   <dt>見分けやすい色の組み合わせ参照先</dt>
   <dd>
     <ul>
-      <li>[カラーユニバーサルデザイン推奨配色セット](https://jfly.uni-koeln.de/colorset/)</li>
+      <li><a href="https://jfly.uni-koeln.de/colorset/" rel="noopener noreferrer" target="_blank">カラーユニバーサルデザイン推奨配色セット</a></li>
     </ul>
   </dd>
 </dl>
@@ -51,13 +51,13 @@ It's a SPA for solving (diagonal) lights out puzzle.
   <dt>solving logic reference</dt>
   <dd>
     <ul>
-      <li>[驚異のライツアウト解法ロジック(Japanese website)](https://computerpuzzle.net/puzzle/lights_out/index.html)</li>
+      <li><a href="https://computerpuzzle.net/puzzle/lights_out/index.html" rel="noopener noreferrer" target="_blank">Amazing logic for solving lights-out puzzle(Japanese website)</a></li>
     </ul>
   </dd>
   <dt>combination of colors easily distinguishable</dt>
   <dd>
     <ul>
-      <li>[カラーユニバーサルデザイン推奨配色セット(Japanese website)](https://jfly.uni-koeln.de/colorset/)</li>
+      <li><a href="https://jfly.uni-koeln.de/colorset/" rel="noopener noreferrer" target="_blank">recommendation of color sets for universal design(Japanese website)</a></li>
     </ul>
   </dd>
 </dl>
